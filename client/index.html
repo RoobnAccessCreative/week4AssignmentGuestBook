@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guest Book</title>
+    <script type="module" src="/src/main.js"></script>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="bookInputs">
+        <img src="/cafe-con-cwassorr.jpg" alt="Cafe Scenery" id="heroImage" />
+
+        <div id="heroText">
+          <h1 id="inputHeader" class="ms">Leave a Message</h1>
+          <h2 id="scrollIndicator" class="ms">Scroll</h2>
+        </div>
+
+        <div class="form-haver">
+          <form>
+            <label for="name" class="kav"
+              >Guest Name<input
+                type="text"
+                name="name"
+                placeholder="e.g. Eve Cramling"
+                required
+            /></label>
+            <label for="message" class="kav"
+              >Message<input
+                type="text"
+                name="message"
+                placeholder="e.g. Hello there"
+                required
+            /></label>
+            <button type="submit" class="ms">Write</button>
+          </form>
+        </div>
+      </div>
+      <div id="msgView">
+        <h1 id="responseHeader" class="ms">View Our Guests</h1>
+        <div id="responses"></div>
+      </div>
+      <footer id="footer">
+        <div class="footer-text"></div>
+        <div id="scrollButton">
+          <img src="" alt="Scroll to Top" />
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
