@@ -29,6 +29,7 @@ img {
   --primary: hsl(140, 19%, 28%);
   --primary-l: hsl(140, 19%, 38%);
   --secondary: hsl(33, 68%, 53%);
+  --secondary-l: hsl(40, 84%, 80%);
   --accent: hsl(137, 38%, 48%);
 }
 
@@ -44,6 +45,13 @@ body {
   font-size: 20px;
   scroll-behavior: smooth;
   scrollbar-color: var(--background) var(--primary);
+  overflow-wrap: anywhere;
+}
+
+*:focus-visible {
+  outline-color: var(--secondary);
+  outline-style: solid;
+  outline-width: 0.25rem;
 }
 
 #app {
@@ -79,12 +87,18 @@ body {
   grid-area: image;
   align-self: center;
 
-  height: 70%;
+  /* #inputHeader is close to centred */
+  height: calc((3rem * 2 + 23.4px * 2 + 33.5px * 2) * 1.5);
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
+}
+
+#inputHeader {
+  font-size: 3rem;
+  letter-spacing: 0.1rem;
 }
 
 #inputHeader,
@@ -138,6 +152,12 @@ input {
   padding-left: 1rem;
   font-size: 1rem;
   letter-spacing: 0.75mm;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+
+  transition: all 200ms ease-in-out;
+}
+input:hover {
+  filter: brightness(80%);
 }
 
 button {
@@ -148,16 +168,114 @@ button {
   color: var(--background);
   border: none;
   font-size: 2rem;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 
-  transition: scale 100ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 button:active {
   scale: 0.9;
 }
+button:hover {
+  filter: brightness(90%);
+  scale: 1.1;
+}
+
+#msgView {
+  width: 100%;
+}
+
+#responseHeader {
+  text-align: center;
+  margin: 4rem 0rem 2rem;
+}
+
+#responses {
+  width: 100%;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.message {
+  width: 70%;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0rem 1rem;
+  background-color: var(--secondary-l);
+  border-radius: 20px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+
+  transition: scale 200ms ease-in-out;
+}
+.message:hover {
+  scale: 1.025;
+}
+
+.message-date {
+  font-size: 0.75rem;
+}
 
 footer {
   background-color: var(--primary);
+  width: 100%;
+  height: fit-content;
+  min-height: 10rem;
+  padding: 1rem 0rem;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: var(--background);
 }
 
-@media only screen and (width < 800px) {
+a {
+  text-decoration: none;
+  color: var(--secondary);
+}
+a:hover {
+  color: var(--secondary-l);
+}
+
+.footer-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  width: fit-content;
+}
+
+#scrollButton {
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: var(--primary-l);
+  padding: 2rem;
+  border-radius: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 200ms ease-in-out;
+}
+#scrollButton:hover {
+  scale: 1.1;
+}
+#scrollButton:active {
+  scale: 0.9;
+}
+
+#scrollButton img {
+  height: 1.25rem;
+  width: auto;
+  margin-bottom: 0.25rem;
 }

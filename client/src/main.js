@@ -15,6 +15,10 @@ function submitHandler(e) {
     },
     body: JSON.stringify(values),
   });
+  bookPage.reset();
+  main();
+  const msgs = document.getElementById("msgView");
+  msgs.scrollIntoView(true);
 }
 
 /**
@@ -27,7 +31,9 @@ function getDate() {
   const month = now.getMonth();
   const year = now.getFullYear();
   const hrs = now.getHours();
-  const mins = now.getMinutes();
+  let mins = now.getMinutes();
+  console.log(mins);
+  mins = mins <= 9 ? `0${mins}` : mins;
   return `${day}/${month}/${year} ${hrs}:${mins}`;
 }
 
@@ -38,20 +44,16 @@ function getDate() {
  *  chevron made for mobile resolution.
  */
 function createMessage(message) {
-  const responses = document.getElementById("responses");
-
   // NEED TO MAKE :
   // box
   // —> field x3
-  // —> chevron - group w feild #1
   // —> delete button ?? if we get there
+  //   —> we did not.
 
   const msgBox = document.createElement("div");
-  const msgName = document.createElement("h3");
+  const msgName = document.createElement("h2");
   const msgMsg = document.createElement("p");
   const msgDate = document.createElement("p");
-  const chevron = document.createElement("img");
-  const nameAndChev = document.createElement("div");
 
   // inject a class system
 
@@ -59,33 +61,35 @@ function createMessage(message) {
   msgName.classList.add("message-name", "ms");
   msgMsg.classList.add("message-message", "kav");
   msgDate.classList.add("message-date", "kav");
-  chevron.classList.add("chevron");
-  nameAndChev.classList.add("name-chevron");
 
   // Add content to elements
 
   msgName.textContent = message.name;
   msgMsg.textContent = message.message;
   msgDate.textContent = message.date_written;
-  chevron.src = "../chevron.svg";
 
   // Put em in coach
 
-  nameAndChev.append(msgName, chevron);
-  msgBox.append(nameAndChev, msgMsg, msgDate);
+  msgBox.append(msgName, msgMsg, msgDate);
   responses.appendChild(msgBox);
 }
 
 /**
- * @async
+ * @async @function main
  * @description performs GET HTTP request for guestbook messages
  *  and loops through each to create DOM elements.
  */
-(async () => {
+async function main() {
   const messages = await fetch("http://localhost:8080/get_data");
   const msgData = await messages.json();
+  const responses = document.getElementById("responses");
+  // now runs more than just on load, so needs to wipe existing elements first
+  responses.innerHTML = "";
   msgData.forEach((msg) => createMessage(msg));
-})();
+}
+main();
 
 const bookPage = document.querySelector("form");
+const scroller = document.getElementById("scrollButton");
 bookPage.addEventListener("submit", submitHandler);
+scroller.addEventListener("click", () => scrollTo(0, 0));
