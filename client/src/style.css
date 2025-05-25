@@ -302,6 +302,7 @@ a:hover {
 
   form {
     height: 45%;
+    z-index: 10;
   }
 
   #inputHeader,
