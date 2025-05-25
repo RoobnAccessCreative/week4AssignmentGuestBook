@@ -80,7 +80,9 @@ function createMessage(message) {
  *  and loops through each to create DOM elements.
  */
 async function main() {
-  const messages = await fetch("http://localhost:8080/get_data");
+  const messages = await fetch(
+    "https://reuben-guestbook.onrender.com/get_data"
+  );
   const msgData = await messages.json();
   const responses = document.getElementById("responses");
   // now runs more than just on load, so needs to wipe existing elements first
