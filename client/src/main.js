@@ -8,7 +8,7 @@ function submitHandler(e) {
   const dataOnPage = new FormData(bookPage);
   const values = Object.fromEntries(dataOnPage);
   values.date_written = getDate();
-  fetch("http://localhost:8080/write", {
+  fetch("https://reuben-guestbook.onrender.com/write", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
