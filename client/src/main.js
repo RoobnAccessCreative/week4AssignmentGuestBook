@@ -8,7 +8,6 @@ function submitHandler(e) {
   const dataOnPage = new FormData(bookPage);
   const values = Object.fromEntries(dataOnPage);
   values.date_written = getDate();
-  console.log(values);
   fetch("http://localhost:8080/write", {
     method: "POST",
     headers: {
@@ -84,7 +83,7 @@ function createMessage(message) {
  */
 (async () => {
   const messages = await fetch("http://localhost:8080/get_data");
-  msgData = await messages.json();
+  const msgData = await messages.json();
   msgData.forEach((msg) => createMessage(msg));
 })();
 
